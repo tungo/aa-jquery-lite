@@ -21,6 +21,22 @@ class DOMNodeCollection {
     });
   }
 
+  removeClass(classNames) {
+    if (classNames === undefined) {
+      this.elements.forEach((el) => {
+        el.className = "";
+      });
+    } else {
+      const classList = classNames.split(" ");
+
+      this.elements.forEach((el) => {
+        classList.forEach((className) => {
+          el.className = el.className.replace(className, "").trim();
+        });
+      });
+    }
+  }
+
   html(innerHTML) {
     if (innerHTML === undefined) {
       return this.elements[0].innerHTML;

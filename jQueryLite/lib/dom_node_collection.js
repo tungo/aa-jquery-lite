@@ -111,6 +111,23 @@ class DOMNodeCollection {
     });
     this.elements = [];
   }
+
+  on(type, callback) {
+    this.elements.forEach((el) => {
+      el.addEventListener(type, callback);
+
+      if (el.eventListenerCallback === undefined) {
+        el.eventListenerCallback = {};
+      }
+      el.eventListenerCallback[type] = callback;
+    });
+  }
+
+  off(type) {
+    this.elements.forEach((el) => {
+      el.removeEventListener(type, el.eventListenerCallback[type]);
+    });
+  }
 }
 
 module.exports = DOMNodeCollection;

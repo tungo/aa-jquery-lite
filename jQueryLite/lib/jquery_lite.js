@@ -181,6 +181,17 @@ class DOMNodeCollection {
 
     return parents;
   }
+
+  find(selector) {
+    let foundElements = [];
+
+    this.elements.forEach((el) => {
+      let selectedChildren = Array.from(el.querySelectorAll(selector));
+      foundElements = foundElements.concat(selectedChildren);
+    });
+
+    return new DOMNodeCollection(foundElements);
+  }
 }
 
 module.exports = DOMNodeCollection;

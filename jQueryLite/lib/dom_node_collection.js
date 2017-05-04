@@ -104,6 +104,13 @@ class DOMNodeCollection {
 
     return new DOMNodeCollection(foundElements);
   }
+
+  remove() {
+    this.elements.forEach((el) => {
+      el.remove();
+    });
+    this.elements = [];
+  }
 }
 
 module.exports = DOMNodeCollection;

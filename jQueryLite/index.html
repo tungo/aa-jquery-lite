@@ -9,7 +9,9 @@
   <body>
     <section>
       <h2>Heading!</h2>
-
+      <script type="text/javascript">
+        $l(() => console.log("MAD SKILLZ"));
+      </script>
       <ul>
         <li><p>First list elem</p></li>
         <li><p>Second list elem</p></li>
@@ -23,7 +25,9 @@
       <p>Section 2 here!</p>
       <a href="#no-cats-here">No CAT!!!!</a>
     </section>
-
+    <script type="text/javascript">
+      $l(() => console.log($l(".more-dummy p").elements[0].innerHTML));
+    </script>
     <ul>
       <li><p>First list elemeeee</p></li>
       <li><p>Second list elemeeee</p></li>

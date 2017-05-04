@@ -73,6 +73,16 @@ class DOMNodeCollection {
       this.appendInnerHTML(content);
     }
   }
+
+  children() {
+    let els = [];
+    // els = this.elements.reduce((accum, el) => accum.concat(el.children), []);
+    this.elements.forEach((el) => {
+      els = els.concat(Array.from(el.children));
+    });
+    console.log(els);
+    return new DOMNodeCollection(els);
+  }
 }
 
 module.exports = DOMNodeCollection;

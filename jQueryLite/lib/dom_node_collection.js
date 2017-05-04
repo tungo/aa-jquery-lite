@@ -79,8 +79,19 @@ class DOMNodeCollection {
     this.elements.forEach((el) => {
       els = els.concat(Array.from(el.children));
     });
-    
+
     return new DOMNodeCollection(els);
+  }
+
+  parent() {
+    let parents = [];
+    this.elements.forEach((el) => {
+      if (!parents.includes(el.parentNode)) {
+        parents.push(el.parentNode);
+      }
+    });
+
+    return parents;
   }
 }
 

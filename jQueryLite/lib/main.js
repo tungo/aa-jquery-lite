@@ -31,6 +31,30 @@ window.$l.extend = function (obj1, obj2) {
   return result;
 };
 
+window.$l.ajax = function (options) {
+  const defaults = {
+    type: "GET",
+    url: window.location.href,
+    dataType: "json",
+    data: {}
+  };
+
+  options = window.$l.extend(defaults, options);
+
+  const xhr = new XMLHttpRequest();
+  xhr.open(options.type, options.url);
+  xhr.onload = function () {
+    if (options.success instanceof Function &&
+        this.status === 200) {
+      options.success(xhr.response);
+    } else if (options.error instanceof Function &&
+               this.status !== 200) {
+      options.error(xhr.response);
+    }
+  };
+  xhr.send(options.data);
+};
+
 window.callbackQueue = [];
 document.addEventListener("DOMContentLoaded", () => {
   window.callbackQueue.forEach((el) => el());

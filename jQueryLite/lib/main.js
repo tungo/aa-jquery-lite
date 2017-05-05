@@ -16,6 +16,21 @@ window.$l = function (selector) {
   return new DOMNodeCollection(elems);
 };
 
+window.$l.extend = function (obj1, obj2) {
+  let result = {};
+  let args = Array.from(arguments);
+
+  args.forEach((el) => {
+    let keys = Object.keys(el);
+
+    keys.forEach((k) => {
+      result[k] = el[k];
+    });
+  });
+
+  return result;
+};
+
 window.callbackQueue = [];
 document.addEventListener("DOMContentLoaded", () => {
   window.callbackQueue.forEach((el) => el());
